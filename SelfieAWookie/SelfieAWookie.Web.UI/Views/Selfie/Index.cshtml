@@ -1,0 +1,63 @@
+﻿@model List<Selfie>
+
+@{
+    ViewData["Title"] = "Les selfies";
+
+    // Layout = "_LayoutSelfie";
+
+    //var list = new List<string>()
+    //{
+    //    "Wow trop bien moustafar",
+    //    "Ta vu je suis avec Luke"
+    //};
+
+    // Avant utilisation de la property Model
+    //List<Selfie> list = new ()
+    //{
+    //    new () { Id = 1, Titre = "Wow trop bien moustafar"},
+    //    new () { Id = 2, Titre = "Ta vu je suis avec Luke" }
+    //};
+}
+
+<div class="filtres">
+    <h2>@ViewBag.CeQueLonVeut</h2>
+    @{
+        List<int> annees = this.ViewBag.Annees;
+    }
+    <select>
+        @foreach (var item in annees)
+        {
+            <option>@item</option>    
+        }        
+    </select>
+</div>
+
+
+@if (Model.Count > 0)
+{
+    <div class="container">
+        @foreach (var item in Model)
+        {
+            <div class="selfie">
+                <div>
+                    @(item.Titre + "@")
+                </div>
+                <div>
+                    <img src="@item.ImageUrl" alt="@item.Titre">
+                </div>
+            </div>
+        }    
+    </div>
+}
+else
+{
+    @("A toi de jouer")
+    <span><i>Aucun selfie disponible, à toi de jouer !</i></span>
+}
+
+@section scripts 
+{
+    <script>
+alert('@ViewData["Title"]');
+    </script>
+}
