@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JeVaisAuTravail
 {
-	internal class Salarie
+	public class Salarie
 	{
 		#region Fields
 		private ITempsQuiFait meteo;
@@ -23,6 +23,10 @@ namespace JeVaisAuTravail
 		public void AllerAuTravail()
 		{
 			var temps = this.meteo.Donner();
+
+			IMoyenDeDeplacement moyenDeplacement = FabricMoyenDeDeplacement.Creer(temps);
+
+			moyenDeplacement.Deplacer(this);
 		}
 		#endregion
 	}

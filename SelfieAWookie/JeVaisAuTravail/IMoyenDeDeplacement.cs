@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace JeVaisAuTravail
 {
-	public interface ITempsQuiFait
+	public interface IMoyenDeDeplacement
 	{
-		TempsQuiFait Donner();
+		void Deplacer(Salarie salarie);
 	}
 }

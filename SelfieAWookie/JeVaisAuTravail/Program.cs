@@ -16,4 +16,5 @@ void Afficher(string message)
 ApiMeteo meteo = new ();
 
 Salarie salarie = new (meteo);
+salarie.AllerAuTravail();
 

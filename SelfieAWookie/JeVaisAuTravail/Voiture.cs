@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace JeVaisAuTravail
 {
-	public interface ITempsQuiFait
+	public class Voiture : IMoyenDeDeplacement
 	{
-		TempsQuiFait Donner();
+		public void Deplacer(Salarie salarie)
+		{
+			Console.WriteLine("Vroom vroom");
+		}
 	}
 }

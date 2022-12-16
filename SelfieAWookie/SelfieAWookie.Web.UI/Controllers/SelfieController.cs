@@ -9,7 +9,14 @@ namespace SelfieAWookie.Web.UI.Controllers
         public IActionResult Index()
         {
             Selfie selfie = new Selfie();
-            selfie.LoadFromDatabase(1);
+            try
+            {
+                selfie.LoadFromDatabase(1);
+            }
+            catch(Exception ex)
+			{
+
+			}
 
             List<Selfie> list = new()
             {
