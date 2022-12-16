@@ -1,13 +1,12 @@
 using SelfieAWookie.Core.Services;
+using SelfieAWookie.Web.UI.AppCode;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-
-// builder.Services.AddScoped<IWookieeService, WookieeMySQLService>();
-builder.Services.AddScoped<IWookieeService, WookieeLocalFileService>();
+builder.Services.AjouterInjectionsDependancesCustom();
 
 var app = builder.Build();
 

@@ -1,11 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SelfieAWookie.Core.Models;
+using SelfieAWookie.Web.UI.AppCode;
 using SelfieAWookie.Web.UI.Models;
 
 namespace SelfieAWookie.Web.UI.Controllers
 {
     public class SelfieController : Controller
     {
+        private readonly ILoggerCustom logger;
+
+
+        public SelfieController(ILoggerCustom logger)
+		{
+            this.logger = logger;
+		}
+
         public IActionResult Index()
         {
             Selfie selfie = new Selfie();
@@ -15,7 +24,7 @@ namespace SelfieAWookie.Web.UI.Controllers
             }
             catch(Exception ex)
 			{
-
+                this.logger.Log("Erreur", ex);
 			}
 
             List<Selfie> list = new()
@@ -37,6 +46,23 @@ namespace SelfieAWookie.Web.UI.Controllers
                                                          new Annee().LoadFromDatabase().Select(item => item.Valeur).ToList()));
         }
 
-		//public List<int> Annees { get; set; }
-	}
+
+		[HttpGet]
+        public IActionResult Create()
+		{
+            return View();
+		}
+
+        [HttpPost]
+        public IActionResult Create(string[] titre, string Shabala)
+        {
+            var titeR = this.Request.Form["Titre"];
+
+            return View();
+        }
+
+
+
+        //public List<int> Annees { get; set; }
+    }
 }
