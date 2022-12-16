@@ -1,0 +1,10 @@
+﻿@model List<Wookie>
+
+@{
+	var list = Model.Where(item => item.Age > 10).ToList();
+}
+
+@foreach (var item in list)
+{
+	<partial name="_WookieResume" model="item"></partial>
+}

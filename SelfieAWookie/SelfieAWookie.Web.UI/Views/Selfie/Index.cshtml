@@ -1,4 +1,4 @@
-﻿@model List<Selfie>
+﻿@model SelfieListViewModel
 
 @{
     ViewData["Title"] = "Les selfies";
@@ -22,21 +22,28 @@
 <div class="filtres">
     <h2>@ViewBag.CeQueLonVeut</h2>
     @{
-        List<int> annees = this.ViewBag.Annees;
+        // List<int> annees = this.ViewBag.Annees;
+        // var listItems = Model.Annees.Select(item => new SelectListItem() { Value = item.ToString(), Text = item.ToString() });
     }
-    <select>
-        @foreach (var item in annees)
+    @*<select>
+        @foreach (var item in Model.Annees)
         {
-            <option>@item</option>    
+            <option value="@item">@item</option>    
         }        
-    </select>
+    </select>*@
+
+    <select asp-items="Model.AnneeListItem" class="maclass"></select>
+
+    
+    
+    @*@Html.DropDownList("Annee", listItems, "", new { @class="maclasscss" })*@
 </div>
 
 
-@if (Model.Count > 0)
+@if (Model.SelfieList.Count > 0)
 {
     <div class="container">
-        @foreach (var item in Model)
+        @foreach (var item in Model.SelfieList)
         {
             <div class="selfie">
                 <div>
