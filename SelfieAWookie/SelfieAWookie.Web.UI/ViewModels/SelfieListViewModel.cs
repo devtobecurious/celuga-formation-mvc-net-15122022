@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using SelfieAWookie.Core.Models;
 using SelfieAWookie.Web.UI.Controllers;
 
 namespace SelfieAWookie.Web.UI.Models

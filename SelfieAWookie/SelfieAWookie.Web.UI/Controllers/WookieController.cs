@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SelfieAWookie.Core.Models;
-using SelfieAWookie.Core.Services;
+using SelfieAWookie.Core.Services.Wookies;
 
 namespace SelfieAWookie.Web.UI.Controllers
 {

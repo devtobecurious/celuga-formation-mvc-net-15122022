@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SelfieAWookie.Core.Services
+namespace SelfieAWookie.Core.Services.Wookies
 {
-	public interface IWookieeService
-	{
-		List<Wookie> GetList();
-	}
+    public interface IWookieeService
+    {
+        List<Wookie> GetList();
+    }
 }

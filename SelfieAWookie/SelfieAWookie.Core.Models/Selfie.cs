@@ -1,4 +1,4 @@
-﻿namespace SelfieAWookie.Web.UI.Models
+﻿namespace SelfieAWookie.Core.Models
 {
     public class Selfie
     {
