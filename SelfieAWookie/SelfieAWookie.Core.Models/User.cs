@@ -19,5 +19,9 @@ namespace SelfieAWookie.Core.Models
 
         [Required]
         public string Email { get; set; } = "";
+
+        public int Age { get; set; }
+
+        public DateTime BirthDate { get; set; }
     }
 }

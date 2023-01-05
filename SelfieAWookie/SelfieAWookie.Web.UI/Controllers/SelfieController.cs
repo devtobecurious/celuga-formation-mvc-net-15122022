@@ -4,6 +4,7 @@ using SelfieAWookie.Core.Services.Selfies;
 using SelfieAWookie.Web.UI.AppCode;
 using SelfieAWookie.Web.UI.AppCode.Models;
 using SelfieAWookie.Web.UI.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace SelfieAWookie.Web.UI.Controllers
 {
@@ -12,19 +13,24 @@ namespace SelfieAWookie.Web.UI.Controllers
         private readonly ILoggerCustom logger;
         private readonly ISelfieService selfieService;
         private readonly DefaultDbContext context;
+        private readonly IWebHostEnvironment environment;
 
         public SelfieController(ILoggerCustom logger, 
                                 ISelfieService selfieService, 
                                 DefaultDbContext context,
+                                IWebHostEnvironment environment,
                                 IConfiguration configuration)
 		{
             this.logger = logger;
             this.selfieService = selfieService;
             this.context = context;
+            this.environment = environment;
 		}
 
         public IActionResult Index()
         {
+            
+
             // var model = this.selfieService.GetList();
             // var model = this.context.Selfies.ToList();
             var query = from item in this.context.Selfies
@@ -80,16 +86,27 @@ namespace SelfieAWookie.Web.UI.Controllers
         //     }
 
 
-        [HttpGet]
+        // [HttpGet]
         public IActionResult Create()
 		{
             return View();
 		}
 
+        //[HttpPost]
+        //public IActionResult Create(string[] titre, string Shabala)
+        //{
+        //    var titeR = this.Request.Form["Titre"];
+
+        //    return View();
+        //}
+
         [HttpPost]
-        public IActionResult Create(string[] titre, string Shabala)
+        public IActionResult Create(TestClass test)
         {
-            var titeR = this.Request.Form["Titre"];
+            if (ModelState.IsValid)
+            {
+                var titeR = this.Request.Form["Titre"];
+            }
 
             return View();
         }
@@ -97,5 +114,15 @@ namespace SelfieAWookie.Web.UI.Controllers
 
 
         //public List<int> Annees { get; set; }
+    }
+
+    public class TestClass
+    {
+        [Required(AllowEmptyStrings = true)]
+        public string? Titre { get; set; }
+
+        public int Shabala { get; set; }
+
+        // public string[] Titre2 { get; set; }
     }
 }
