@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SelfieAWookie.Core.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SelfieAWookie.Web.UI.AppCode.Models
 {
@@ -28,5 +29,9 @@ namespace SelfieAWookie.Web.UI.AppCode.Models
         }
 
         public DbSet<Selfie> Selfies { get; set; }
+
+        
+        public DbSet<User> Users { get; set; }
+
     }
 }
