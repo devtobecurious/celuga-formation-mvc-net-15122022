@@ -2,6 +2,7 @@
 using SelfieAWookie.Core.Models;
 using SelfieAWookie.Core.Services.Selfies;
 using SelfieAWookie.Web.UI.AppCode;
+using SelfieAWookie.Web.UI.AppCode.Models;
 using SelfieAWookie.Web.UI.Models;
 
 namespace SelfieAWookie.Web.UI.Controllers
@@ -10,16 +11,37 @@ namespace SelfieAWookie.Web.UI.Controllers
     {
         private readonly ILoggerCustom logger;
         private readonly ISelfieService selfieService;
+        private readonly DefaultDbContext context;
 
-        public SelfieController(ILoggerCustom logger, ISelfieService selfieService)
+        public SelfieController(ILoggerCustom logger, 
+                                ISelfieService selfieService, 
+                                DefaultDbContext context,
+                                IConfiguration configuration)
 		{
             this.logger = logger;
             this.selfieService = selfieService;
+            this.context = context;
 		}
 
         public IActionResult Index()
         {
-            var model = this.selfieService.GetList();
+            // var model = this.selfieService.GetList();
+            // var model = this.context.Selfies.ToList();
+            var query = from item in this.context.Selfies
+                        select item;
+
+            //if (true)
+            //{
+            //    query = query.Where(item => item.Titre.StartsWith("H"));
+            //}
+
+            var model = query.ToList();
+
+            // l'accès à la base est fermée
+            //foreach (var item in this.context.Selfies)
+            //{
+
+            //}
 
             return this.View(model);
         }

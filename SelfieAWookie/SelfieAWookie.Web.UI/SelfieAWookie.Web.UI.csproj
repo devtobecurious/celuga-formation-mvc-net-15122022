@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.12" />
+    <PackageReference Include="MySql.EntityFrameworkCore" Version="6.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SelfieAWookie.Core.Models\SelfieAWookie.Core.Models.csproj" />
     <ProjectReference Include="..\SelfieAWookie.Core.Services\SelfieAWookie.Core.Services.csproj" />
   </ItemGroup>
