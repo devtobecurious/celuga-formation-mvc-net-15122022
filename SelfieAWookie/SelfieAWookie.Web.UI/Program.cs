@@ -51,11 +51,34 @@ builder.Services.AjouterInjectionsDependancesCustom();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+// app.Environment.IsEnvironment("Machin");
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+} 
+else
+{
+    // Singleton
+    // var item = app.Services.GetService<>
+    
+    // Le but : Créer un role au démarrage de l'appli, sans passer par un controller donné
+    var scope = app.Services.CreateScope(); //
+    // RoleManager est défini dans le moteur d'injection en Scoped !
+    var roleManager = scope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
+
+    var resultRole = roleManager.FindByNameAsync("Admin").Result;
+
+    if (resultRole == null)
+    {
+        roleManager.CreateAsync(new IdentityRole()
+        {
+            Name = "Admin"
+        }).Wait();
+    }
 }
 
 app.UseHttpsRedirection();
