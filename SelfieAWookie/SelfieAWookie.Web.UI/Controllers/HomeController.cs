@@ -18,7 +18,7 @@ namespace SelfieAWookie.Web.UI.Controllers
         }
 
         // [HttpPost]
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
             
             return View();

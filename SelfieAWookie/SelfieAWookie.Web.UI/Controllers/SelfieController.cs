@@ -52,7 +52,7 @@ namespace SelfieAWookie.Web.UI.Controllers
 
             //}
 
-            return this.View(model);
+            return this.View( new SelfieListViewModel(model, new List<int>()));
         }
 
 

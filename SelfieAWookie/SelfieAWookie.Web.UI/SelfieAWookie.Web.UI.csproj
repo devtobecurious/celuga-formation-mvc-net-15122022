@@ -29,4 +29,9 @@
     <ProjectReference Include="..\SelfieAWookie.Core.Services\SelfieAWookie.Core.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
+
+
 </Project>

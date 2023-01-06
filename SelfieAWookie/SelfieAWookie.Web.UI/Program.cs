@@ -89,6 +89,17 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+//app.Map("", () =>
+//{
+
+//});
+
+
+
+app.MapControllerRoute(
+    name: "lesSelfies",
+    pattern: "les-selfies/{id?}",
+    defaults: new {controller="Selfie", action = "Index"});
 
 app.MapControllerRoute(
     name: "default",
