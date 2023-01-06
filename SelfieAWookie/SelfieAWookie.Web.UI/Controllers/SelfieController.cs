@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SelfieAWookie.Core.Models;
 using SelfieAWookie.Core.Services.Selfies;
 using SelfieAWookie.Web.UI.AppCode;
@@ -8,6 +9,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SelfieAWookie.Web.UI.Controllers
 {
+    
     public class SelfieController : Controller
     {
         private readonly ILoggerCustom logger;
@@ -27,6 +29,7 @@ namespace SelfieAWookie.Web.UI.Controllers
             this.environment = environment;
 		}
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             
@@ -86,6 +89,7 @@ namespace SelfieAWookie.Web.UI.Controllers
         //     }
 
 
+        [Authorize(Roles = "User")]
         // [HttpGet]
         public IActionResult Create()
 		{

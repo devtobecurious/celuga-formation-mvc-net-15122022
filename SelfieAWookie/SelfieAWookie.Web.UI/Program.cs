@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SelfieAWookie.Core.Services;
 using SelfieAWookie.Web.UI.AppCode;
 using SelfieAWookie.Web.UI.AppCode.Models;
+using WebWithRightsDotnet6.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,20 @@ builder.Services.AddDbContext<DefaultDbContext>(options =>
 {
     options.UseMySQL(builder.Configuration.GetConnectionString("SelfieDatabase"));
 });
+
+builder.Services.AddDbContext<WebWithRightsDotnet6Context>(options =>
+{
+    options.UseMySQL(builder.Configuration.GetConnectionString("SelfieDatabase"));
+});
+
+builder.Services.AddDefaultIdentity<WebWithRightsDotnet6User>(options =>
+{
+    options.SignIn.RequireConfirmedEmail = true;
+})
+.AddRoles<IdentityRole>()
+.AddEntityFrameworkStores<WebWithRightsDotnet6Context>();
+
+
 
 builder.Services.AjouterInjectionsDependancesCustom();
 
@@ -32,10 +48,14 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapRazorPages();
 
 app.Run();

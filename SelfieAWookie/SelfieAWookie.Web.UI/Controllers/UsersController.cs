@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using SelfieAWookie.Web.UI.AppCode.Models;
 
 namespace SelfieAWookie.Web.UI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
         private readonly DefaultDbContext _context;
@@ -22,7 +24,7 @@ namespace SelfieAWookie.Web.UI.Controllers
         // GET: Users
         public IActionResult Index()
         {
-              return View(_context.Users.ToList());
+              return View("IndexUsers", _context.Users.ToList());
         }
 
         // GET: Users/Details/5
@@ -59,6 +61,9 @@ namespace SelfieAWookie.Web.UI.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(user);
+                //_context.Add(user1);
+                //_context.Add(user2);
+                //_context.Add(user3);
                 await _context.SaveChangesAsync();
 
 
@@ -99,6 +104,7 @@ namespace SelfieAWookie.Web.UI.Controllers
             {
                 try
                 {
+                    // _context.Users.Add(user);
                     _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
