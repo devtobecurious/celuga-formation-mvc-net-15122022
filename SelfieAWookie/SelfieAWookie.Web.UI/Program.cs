@@ -25,11 +25,26 @@ builder.Services.AddDbContext<WebWithRightsDotnet6Context>(options =>
 builder.Services.AddDefaultIdentity<WebWithRightsDotnet6User>(options =>
 {
     options.SignIn.RequireConfirmedEmail = true;
+    options.SignIn.RequireConfirmedAccount= true;
 })
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<WebWithRightsDotnet6Context>();
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireNonAlphanumeric = true;
 
+    options.Lockout.MaxFailedAccessAttempts = int.Parse(builder.Configuration["NbAttempts"]);
+});
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.HttpOnly = true;
+
+    options.ExpireTimeSpan= TimeSpan.FromMinutes(20);
+
+    // options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+});
 
 builder.Services.AjouterInjectionsDependancesCustom();
 

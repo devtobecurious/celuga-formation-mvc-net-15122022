@@ -19,7 +19,7 @@ namespace SelfieAWookie.Web.UI.AppCode.Models
             // Pour chaque table à faire, si besoin
         }
 
-        public DefaultDbContext(DbContextOptions options) : base(options)
+        public DefaultDbContext(DbContextOptions<DefaultDbContext> options) : base(options)
         {
             
         }
